@@ -2,11 +2,31 @@ import React, { Component } from "react";
 
 class Cart extends Component {
 
-  state = { 
-    count: 0,
-    // imageUrl: 'https://picsum.photos/200'
-    tags: ['tag1', 'tag2', 'tag3']
-  };
+  componentDidUpdate(prevProps, prevState){
+      // This method is called there is an update to a component
+      // If you need to make an Ajax call to update the component content,
+      // This is the right place to do it...
+
+      console.log('prevProps', prevProps);
+      console.log('prevState', prevState);
+
+      if (prevProps.cart.value === this.props.cart.value){
+        // console.log('they are equal');
+      }
+  }
+
+  componentWillUnmount(){
+    // It is called when an element is to be removed from the DOM -- e.g deletion
+    console.log('Cart - Unmounted');
+    // If there are cleanups to be done in the code, e.g removal of timers, this 
+    // is the method to do it, if not done, there will be memory leaks
+  }
+
+  // state = { 
+  //   value: this.props.cart.value,
+  //   // imageUrl: 'https://picsum.photos/200'
+  //   tags: ['tag1', 'tag2', 'tag3']
+  // };
 
   // constructor() {
   //   // The first and stable method to bind event handlers
@@ -31,7 +51,7 @@ class Cart extends Component {
     // Also modify the function to look like this,
     // no parentheses, since it's just one parameter
   handleIncrement = product => { 
-    console.log(product)
+    // console.log(product)
     // This is another and more simple way to bind event handlers, why?
     // arrow functions inherits the 'this' keyword
     // console.log('increment clicked', this)    
@@ -39,47 +59,60 @@ class Cart extends Component {
 
     // How to update state in React
     // React doesn't allow you affect the DOM
-    // "this.state.count++" will not work, React is unaware of your actions
+    // "this.state.value++" will not work, React is unaware of your actions
     // However, this.setState helps React merge the happenings in the virtual DOM to the 
     // browser DOM and therefore the state of the DOM
 
-    this.setState({ count: this.state.count + 1 })
+    // this.setState({ value: this.state.value + 1 })
   }
 
   render() {
+
+    console.log('Cart - Rendered'); 
     // const { imageUrl } = this.state
+
+    // Props, a JS object that facilitates passing value to components
+    // console.log('props', this.props);
     
+    // Using Object Destructuring
+    const { onDelete, cart } = this.props;
     return (
-      <React.Fragment>
+      <div>
         {/* <img src= { imageUrl } alt=""/> */}
-        <span className={ this.getBadgeClasses() }>{ this.formatCount() }</span>
+        <span className={ this.getBadgeClasses() }>{ this.formatvalue() }</span>
         
         <button 
           // onClick={ this.handleIncrement } 
 
           // When you need to pass a parameter to a function in React,
           // Easiest way is to pass an inline function to the onClick method, like below
-          onClick={ () => this.handleIncrement({ id: 1 }) }
+          // onClick={ () => this.handleIncrement({ id: 1 }) }
+
+          onClick={ () => this.props.onIncrement(cart)}
           className="btn btn-secondary btn-sm">Increment
         </button>
 
         {/* { this.renderTags() } */}
-      </React.Fragment>
+
+        <button 
+          onClick={() => onDelete(cart.id)}
+          className="btn btn-danger btn-sm m-2">Delete</button>
+      </div>
     );
   }
 
   getBadgeClasses() {
     // Rendering classes dynamically
     let classes = 'badge m-2 badge-';
-    classes += (this.state.count === 0) ? 'warning' : 'primary';
+    classes += (this.props.cart.value === 0) ? 'warning' : 'primary';
     return classes;
   }
 
-  formatCount() {
-    // Using object destructuring to take out the count property of the state object
-    const { count } = this.state;
-    // return count === 0 ? <h1>Zero</h1> : count; ==> JSX
-    return count === 0 ? 'Zero' : count; 
+  formatvalue() {
+    // Using object destructuring to take out the value property of the state object
+    const { value } = this.props.cart;
+    // return value === 0 ? <h1>Zero</h1> : value; ==> JSX
+    return value === 0 ? 'Zero' : value; 
   }
 }
 
