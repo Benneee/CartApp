@@ -7,8 +7,8 @@ class Cart extends Component {
       // If you need to make an Ajax call to update the component content,
       // This is the right place to do it...
 
-      console.log('prevProps', prevProps);
-      console.log('prevState', prevState);
+      // console.log('prevProps', prevProps);
+      // console.log('prevState', prevState);
 
       if (prevProps.cart.value === this.props.cart.value){
         // console.log('they are equal');
@@ -17,7 +17,7 @@ class Cart extends Component {
 
   componentWillUnmount(){
     // It is called when an element is to be removed from the DOM -- e.g deletion
-    console.log('Cart - Unmounted');
+    // console.log('Cart - Unmounted');
     // If there are cleanups to be done in the code, e.g removal of timers, this 
     // is the method to do it, if not done, there will be memory leaks
   }
@@ -68,7 +68,7 @@ class Cart extends Component {
 
   render() {
 
-    console.log('Cart - Rendered'); 
+    // console.log('Cart - Rendered'); 
     // const { imageUrl } = this.state
 
     // Props, a JS object that facilitates passing value to components

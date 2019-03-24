@@ -7,7 +7,7 @@ import React from 'react';
 // For component, "imrc"... For class, "cc"
 
 const NavBar = ({ totalCarts }) => {
-    console.log('NavBar - Rendered')
+    // console.log('NavBar - Rendered')
     return ( 
         <nav className="navbar navbar-light bg-light">
         { /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }

@@ -4,13 +4,13 @@ import Carts from "./components/carts";
 import "./App.css";
 
 class App extends Component {
-  constructor() {
-    super();
-    console.log("App-Constructor");
-  }
+  // constructor() {
+  //   super();
+  //   // console.log("App-Constructor");
+  // }
 
   componentDidMount() {
-    console.log("App-Mounted");
+    // console.log("App-Mounted");
   }
   state = {
     carts: [
@@ -44,7 +44,7 @@ class App extends Component {
   };
 
   render() {
-    console.log("App-Rendered");
+    // console.log("App-Rendered");
     return (
       <React.Fragment>
         <NavBar totalCarts={this.state.carts.filter(c => c.value > 0).length} />

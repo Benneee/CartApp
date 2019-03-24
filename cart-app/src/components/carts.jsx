@@ -18,7 +18,7 @@ class Carts extends Component {
 
     render() { 
 
-        console.log('Carts - Rendered');
+        // console.log('Carts - Rendered');
         // When you want to pass complex elements to another component, you do two things
         //  You do not use a self-closing tag for the element - component markup
         //  You link the props.children object for whatever you want to do
